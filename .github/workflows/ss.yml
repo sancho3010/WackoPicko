@@ -1,0 +1,17 @@
+name: SECRET_SCAN
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: fluidattacks/ss-action@main
+        id: scan
+        with:
+          scan_config_path: .github/ss-config.yaml

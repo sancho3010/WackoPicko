@@ -1,0 +1,6 @@
+ss:
+  include:
+    - .
+output:
+  file_path: results-ss.sarif
+  format: SARIF
