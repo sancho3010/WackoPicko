@@ -15,3 +15,9 @@ jobs:
         id: scan
         with:
           scan_config_path: .github/sast-config.yaml
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sast-results
+          path: results-sast.csv

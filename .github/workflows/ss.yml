@@ -16,3 +16,9 @@ jobs:
         with:
           scan_config_path: .github/ss-config.yaml
           scanner_mode: full
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ss-results
+          path: results-ss.csv

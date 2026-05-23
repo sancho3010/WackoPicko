@@ -13,3 +13,9 @@ jobs:
         id: scan
         with:
           scan_config_path: .github/sca-config.yaml
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sca-results
+          path: results-sca.csv
