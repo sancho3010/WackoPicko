@@ -20,6 +20,26 @@ jobs:
       #  if: steps.scan.outputs.vulnerabilities_found == 'true'
       #  run: exit 1
 
+      - name: Check severity threshold
+        if: always()
+        run: |
+          echo "# Vulnerability Summary"
+          echo ""
+          echo "Critical: $(awk -F',' 'NR>1 && $6=="Critical"' results-sast.csv | wc -l)"
+          echo "High:     $(awk -F',' 'NR>1 && $6=="High"' results-sast.csv | wc -l)"
+          echo "Medium:   $(awk -F',' 'NR>1 && $6=="Medium"' results-sast.csv | wc -l)"
+          echo "Low:      $(awk -F',' 'NR>1 && $6=="Low"' results-sast.csv | wc -l)"
+          echo ""
+
+          HIGH_CRITICAL=$(awk -F',' 'NR>1 && ($6=="High" || $6=="Critical")' results-sast.csv | wc -l)
+
+          echo "Total High/Critical: $HIGH_CRITICAL"
+          if [ "$HIGH_CRITICAL" -gt 0 ]; then
+            echo "::error::Build failed: $HIGH_CRITICAL vulnerabilities exceed the severity threshold (high)"
+            exit 1
+
+          fi
+
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
