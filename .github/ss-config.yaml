@@ -1,6 +1,10 @@
+language: EN
+strict: false
+working_dir: .
+
+output:
+  file_path: results-ss.sarif
+
 ss:
   include:
     - .
-output:
-  file_path: results-ss
-  format: ALL

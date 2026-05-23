@@ -1,8 +1,8 @@
 language: EN
-strict: true
+strict: false
 output:
-  file_path: results-sca
-  format: ALL
+  file_path: results-sca.sarif
+  format: SARIF
 sca:
   include:
     - .

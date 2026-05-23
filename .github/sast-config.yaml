@@ -1,8 +1,8 @@
 language: EN
-strict: true
+strict: false
 output:
-  file_path: results-sast
-  format: ALL
+  file_path: results-sast.sarif
+  format: SARIF
 sast:
   include:
     - .
