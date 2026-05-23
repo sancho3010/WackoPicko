@@ -15,3 +15,4 @@ jobs:
         id: scan
         with:
           scan_config_path: .github/ss-config.yaml
+          scanner_mode: full

@@ -1,10 +1,8 @@
 language: EN
 strict: false
-working_dir: .
-
 output:
   file_path: results-ss.sarif
-
+  format: SARIF
 ss:
   include:
     - .
